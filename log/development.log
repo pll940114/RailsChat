@@ -1086,3 +1086,940 @@ ActionView::MissingTemplate (Missing template users/index, application/index wit
   Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.1ms)
   Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.2ms)
   Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (103.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 20:46:58 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomesController#home as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered homes/home.html.erb within layouts/application (31.2ms)
+  Rendered layouts/_login_panel.html.erb (7.4ms)
+  Rendered layouts/_header.html.erb (10.8ms)
+  Rendered layouts/_content.html.erb (0.7ms)
+Completed 200 OK in 386ms (Views: 364.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 20:47:02 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (371.5ms)
+  Rendered layouts/_login_panel.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 419ms (Views: 416.2ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 20:47:04 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"epkfoXl+QDHoBudOeMLrXiGbdTtMzF2Ip9N+TLTnARrkd03ad7fOqz6nYcEeiEpZM8URsK+1pY0+CGC045fsPA==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/users
+Completed 302 Found in 12ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-12-05 20:47:04 +0800
+Processing by UsersController#index as HTML
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template users/index, application/index with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder, :haml]}. Searched in:
+  * "/Users/zhangyin/git/RailsChat/app/views"
+  * "/Library/Ruby/Gems/2.3.0/gems/rails_admin-0.8.1/app/views"
+  * "/Library/Ruby/Gems/2.3.0/gems/kaminari-0.16.3/app/views"
+):
+  actionview (4.2.5.2) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.5.2) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.5.2) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.5.2) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.5.2) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.5.2) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.5.2) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.5.2) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.2) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.2) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.2) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.2) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.2) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.2) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.2) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.2) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.5.2) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.2) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.2) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.2) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.2) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  remotipart (1.2.1) lib/remotipart/render_overrides.rb:14:in `render_with_remotipart'
+  actionpack (4.2.5.2) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5.2) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5.2) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.2) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.2) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.2) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.2) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.2) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.2) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.2) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.2) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.2) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.2) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.2) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.2) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.2) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.2) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.2) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.2) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.2) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.2) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.2) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.2) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5.2) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.2) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  rack-pjax (0.8.0) lib/rack/pjax.rb:12:in `call'
+  rack (1.6.5) lib/rack/etag.rb:24:in `call'
+  rack (1.6.5) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.5) lib/rack/head.rb:13:in `call'
+  remotipart (1.2.1) lib/remotipart/middleware.rb:27:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.2) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.2) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.2) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.2) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.2) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.2) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.2) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.2) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  thin (1.7.0) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.7.0) lib/thin/connection.rb:84:in `catch'
+  thin (1.7.0) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.7.0) lib/thin/connection.rb:53:in `process'
+  thin (1.7.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.2.2) lib/eventmachine.rb:194:in `run_machine'
+  eventmachine (1.2.2) lib/eventmachine.rb:194:in `run'
+  thin (1.7.0) lib/thin/backends/base.rb:73:in `start'
+  thin (1.7.0) lib/thin/server.rb:162:in `start'
+  rack (1.6.5) lib/rack/handler/thin.rb:19:in `run'
+  rack (1.6.5) lib/rack/server.rb:286:in `start'
+  railties (4.2.5.2) lib/rails/commands/server.rb:80:in `start'
+  railties (4.2.5.2) lib/rails/commands/commands_tasks.rb:80:in `block in server'
+  railties (4.2.5.2) lib/rails/commands/commands_tasks.rb:75:in `tap'
+  railties (4.2.5.2) lib/rails/commands/commands_tasks.rb:75:in `server'
+  railties (4.2.5.2) lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+  railties (4.2.5.2) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:4:in `require'
+  bin/rails:4:in `<main>'
+
+
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.2ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (61.3ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (50.2ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (114.9ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 20:49:17 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (11.3ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 60ms (Views: 57.0ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 20:49:19 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qzh0LO0axSLZ/sfJHMSml94Hj+Qb/l8isS5Q6R6XaoY11iZX49NLuA9fQUZ6jgeQzFnrb/iHpyco9U4RSeeHoA==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-12-05 20:49:19 +0800
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 54ms (Views: 53.3ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 20:49:30 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"epkfoXl+QDHoBudOeMLrXiGbdTtMzF2Ip9N+TLTnARrkd03ad7fOqz6nYcEeiEpZM8URsK+1pY0+CGC045fsPA==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "password_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["password_digest", "$2a$10$uYU1lmARL7qdJshpVqlb0.AIOInMms.pcZTLDHrAHdViSm2FElMbK"], ["updated_at", "2018-12-05 12:49:30.499549"], ["id", 1]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/users
+Completed 302 Found in 69ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-12-05 20:49:30 +0800
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 45ms (Views: 44.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 20:49:48 +0800
+Processing by ChatsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?  [["friend_id", 1]]
+  [1m[36mChat Load (0.1ms)[0m  [1mSELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered chats/_search_fridends.html.erb (0.6ms)
+  Rendered chats/_navside.html.erb (21.7ms)
+  Rendered chats/index.html.erb within layouts/application (24.0ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 91ms (Views: 63.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 20:49:50 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (13.3ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 57ms (Views: 55.8ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 20:49:52 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vsJW2YOmE0WGrnqsUFRz3PMO5630D0Ld2dx4y8f0UIQgLASijW+d31AP/CM2HtLb4VCDJhd2uthAB2YzkIS9og==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-12-05 20:49:52 +0800
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 42ms (Views: 41.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:22:29 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomesController#home as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered homes/home.html.erb within layouts/application (32.7ms)
+  Rendered layouts/_login_panel.html.erb (7.9ms)
+  Rendered layouts/_header.html.erb (11.6ms)
+  Rendered layouts/_content.html.erb (0.9ms)
+Completed 200 OK in 426ms (Views: 404.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:22:32 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to 
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `stringify_keys' for #<ActionDispatch::Flash::FlashHash:0x00007fcd7b306b78>
+Did you mean?  stringify_array):
+  app/controllers/users_controller.rb:24:in `show'
+
+
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.0ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/actionpack-4.2.5.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (62.8ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (357.8ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.2ms)
+  Rendered /Library/Ruby/Gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (423.7ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:23:17 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (14.6ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 71ms (Views: 56.8ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 21:23:27 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1/D6uuy8t0uCBG6J8V8JTLBk4HgD1Yuk5knjk8d6XadJHqjB4nU50VSl6AaXFahLojqE8+Csc6F/kv1rkAqwgQ==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/users
+Completed 302 Found in 14ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-12-05 21:23:27 +0800
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 43ms (Views: 42.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:24:18 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 65ms (Views: 51.0ms | ActiveRecord: 0.7ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 21:24:20 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+EKDsrnjYpO4SddDH6Zvo2OvUodvV40tKDUPnSVsgNRmrNHJtyrsCW7oUcx57M6kcfE2DIwudSix7hFlchxt8g==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:24:20 +0800
+Processing by HomesController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered homes/home.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 54ms (Views: 53.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:24:24 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (17.5ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 62ms (Views: 60.4ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 21:24:26 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UvnR0WwaCeP+ZBuZ7RqWC3Aih0ClNYkDYiLf4uyqJqXMF4OqYtOHeSjFnRaLUDcMYnzjy0ZMcQb7+cEau9rLgw==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:24:26 +0800
+Processing by HomesController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered homes/home.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_login_panel.html.erb (1.1ms)
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 45ms (Views: 44.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:24:31 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_login_panel.html.erb (0.8ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 60ms (Views: 59.0ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 21:24:36 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"co59k1G3EyJSt78SA0AoyvpDQ70Fz3YIfQxwwA1BgVzsYC/oX36duIQWOZ1lConN6B0nNua2jg3k1244WjFseg==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:24:36 +0800
+Processing by HomesController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered homes/home.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_login_panel.html.erb (1.3ms)
+  Rendered layouts/_header.html.erb (3.5ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 47ms (Views: 46.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:24:38 +0800
+Processing by ChatsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?  [["user_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?[0m  [["friend_id", 1]]
+  [1m[35mChat Load (0.2ms)[0m  SELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?  [["user_id", 1]]
+  Rendered chats/_search_fridends.html.erb (0.5ms)
+  Rendered chats/_navside.html.erb (20.8ms)
+  Rendered chats/index.html.erb within layouts/application (22.9ms)
+  Rendered layouts/_login_panel.html.erb (0.9ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 97ms (Views: 67.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:24:42 +0800
+Processing by ChatsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?  [["user_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?[0m  [["friend_id", 1]]
+  [1m[35mChat Load (0.1ms)[0m  SELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?  [["user_id", 1]]
+  Rendered chats/_search_fridends.html.erb (0.1ms)
+  Rendered chats/_navside.html.erb (5.6ms)
+  Rendered chats/index.html.erb within layouts/application (7.3ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 51ms (Views: 48.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:24:43 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (13.5ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 52ms (Views: 51.0ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2018-12-05 21:24:45 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"e7Pes87cp/AgaFPUPdNY1RoVwy3VVzik1gueDe2sChrlXYzIwBUpavbJ1VtbmfnSCEunpjYuwKFP0ID1utznPA==", "user"=>{"name"=>"user1", "email"=>"user1@test.com", "password"=>"[FILTERED]", "phonenumber"=>"970.848.2303 x139", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user1@test.com') AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:24:45 +0800
+Processing by HomesController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered homes/home.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 38ms (Views: 38.0ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/sessions/logout" for 127.0.0.1 at 2018-12-05 21:24:47 +0800
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ydtpT+ois7wmIACOzat82Byc4T01g/p5DUKhV+9UcsRXNTs05Os9JvCBhgGr4d3fDsKFttb6AnyUmb+vuCSf4g=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:24:47 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (9.7ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 47ms (Views: 46.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:25:04 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9m1C2vUeKjGrjIe7PVLenSn5Oo6l2WJfgKPcwU9M3LZogxCh+9ekq30tATRbGH+aO6deBUagmloZeMI5GDwxkA==", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "button"=>""}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "user1@test.com"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 58ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:25:04 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 35ms (Views: 35.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:25:21 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iEVolUiNATZVFX7n5WlguEQx6CD7FoJeIeTxnNHglz8WqzruRkSPrIO0+GiDI8G/Vm+Mqxhvelu4P+9khpB6GQ==", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "button"=>""}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "user1@test.com"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 70ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:25:21 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_login_panel.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 42ms (Views: 42.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:25:39 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AljpkdJoZO5nwcXvJUfDIRo6xUHz78rIyqXuINfCnOqctrvq3KHqdLFgQ2BDDWImCGShyhCWMs1TfvDYgLJxzA==", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "button"=>""}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "user1@test.com"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 64ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:25:39 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_login_panel.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 42ms (Views: 42.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:26:10 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZOxXQ8sVm0BoYx53EYipmX8Cwx6ABVJUxS/FBG5BqVb6AgU4xdwV2r7CmPh3wgiebVynlWN8qlFc9Nv8OTFEcA==", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "button"=>""}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "user1@test.com"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 64ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:26:10 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 40ms (Views: 39.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:26:29 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MW0xcipd21sQHTfELNOh4bceLj6OedkOm+/Fnd3b/OOvg2MJJJRVwca8sUtKmQDmpUBKtW0AIQsCNNtliqsRxQ==", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "button"=>""}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "user1@test.com"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 65ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:26:29 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 39ms (Views: 38.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:26:46 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"br2yLmK5tboK/Dpr3aJLx9pDrvbLqvoNS7WxiKXCBtnwU+BVbHA7INxdvOS76OrAyB3KfSjTAgjSbq9w8rLr/w==", "session"=>{"email"=>"user2@test.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "button"=>""}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "user2@test.com"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 59ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:26:47 +0800
+Processing by HomesController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered homes/home.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 38ms (Views: 37.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2018-12-05 21:26:50 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (11.3ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.2ms)
+Completed 200 OK in 56ms (Views: 54.6ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/2" for 127.0.0.1 at 2018-12-05 21:26:59 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yqkdwqywY2z0pFUO+osrTuVWzS747JjHm9HnhMDfOUZUR0+5onnt9iIF04GcwYpJ9wippRuVYMICCvl8l6/UYA==", "user"=>{"name"=>"user2", "email"=>"user2@test.com", "password"=>"[FILTERED]", "phonenumber"=>"(288) 384-9798", "sex"=>"male"}, "commit"=>"更新信息", "id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user2@test.com') AND "users"."id" != 2) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "password_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["password_digest", "$2a$10$bReDv1/Fds6lxM.hBXhAQuDtjwfkrOXFNfJ4tw2r0Q1VmlPV/QTcG"], ["updated_at", "2018-12-05 13:26:59.587665"], ["id", 2]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 67ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:26:59 +0800
+Processing by HomesController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered homes/home.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 38ms (Views: 37.9ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/sessions/logout" for 127.0.0.1 at 2018-12-05 21:27:04 +0800
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"qZJQLN8r2y3ztsIcnDSbL+rscMuC4k58n73W043QuJ03fAJX0eJVtyUXRJP6fjoo+LIUQGGbtnkGZsgr2qBVuw=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:27:04 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 42ms (Views: 41.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:27:25 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ODQwX3Yzl3IbvWSrE8chyFveFAjhvjzlD0T6Tt2G9o+m2mIkePoZ6M0c4iR1jYDPSYBwgwLHxOCWn+S2ivYbqQ==", "session"=>{"email"=>"user2@test.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "button"=>""}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "user2@test.com"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 65ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:27:25 +0800
+Processing by HomesController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered homes/home.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 40ms (Views: 39.1ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/sessions/logout" for 127.0.0.1 at 2018-12-05 21:27:29 +0800
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"PhPusErfvMCjUwjpBUHfxR/mPZEraXk300YDU6WNcVyg/bzLRBYyWnXyjmZjC37CDbhZGsgQgTJKnR2r8v2ceg=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:27:29 +0800
+Processing by HomesController#home as HTML
+  Rendered homes/home.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 38ms (Views: 37.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions/login" for 127.0.0.1 at 2018-12-05 21:27:46 +0800
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XfirwhDzs4sB7Z25XbDdtvJPOTQGPRWwmzn0EFMkORfDFvm5Hjo9EddMGzY7+nyx4BFdv+VE7bUC4uroBFTUMQ==", "session"=>{"email"=>"user3@test.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "button"=>""}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "user3@test.com"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 65ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:27:46 +0800
+Processing by HomesController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered homes/home.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_login_panel.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 35ms (Views: 34.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:27:48 +0800
+Processing by ChatsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?  [["friend_id", 3]]
+  [1m[36mChat Load (0.1ms)[0m  [1mSELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered chats/_search_fridends.html.erb (0.1ms)
+  Rendered chats/_navside.html.erb (5.4ms)
+  Rendered chats/index.html.erb within layouts/application (7.2ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_content.html.erb (0.2ms)
+Completed 200 OK in 50ms (Views: 47.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2018-12-05 21:27:55 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (18.4ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 67ms (Views: 64.9ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/users/3" for 127.0.0.1 at 2018-12-05 21:28:03 +0800
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"v2DhdOmtDuTMnKsdzhkMVLZ2/EQ+8EPjXC8zklZ3trIhjrMP52SAfho9LZKoU61TpCiYz92Ju+bF9C1qAQdblA==", "user"=>{"name"=>"user3", "email"=>"user3@test.com", "password"=>"[FILTERED]", "phonenumber"=>"313.128.3073", "sex"=>"female"}, "commit"=>"更新信息", "id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user3@test.com') AND "users"."id" != 3) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "password_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["password_digest", "$2a$10$nTStKJ1HdTwQpx9rqBzkfeIrzS2z6.iMkdoqm0BJRcL9T7BLs.CXK"], ["updated_at", "2018-12-05 13:28:03.902469"], ["id", 3]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 66ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-05 21:28:03 +0800
+Processing by HomesController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered homes/home.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_login_panel.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 38ms (Views: 38.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:28:08 +0800
+Processing by ChatsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?  [["friend_id", 3]]
+  [1m[36mChat Load (0.1ms)[0m  [1mSELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered chats/_search_fridends.html.erb (0.1ms)
+  Rendered chats/_navside.html.erb (5.3ms)
+  Rendered chats/index.html.erb within layouts/application (7.2ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 53ms (Views: 49.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2018-12-05 21:28:11 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (11.2ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 55ms (Views: 52.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:28:13 +0800
+Processing by ChatsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?  [["friend_id", 3]]
+  [1m[36mChat Load (0.1ms)[0m  [1mSELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered chats/_search_fridends.html.erb (0.1ms)
+  Rendered chats/_navside.html.erb (5.0ms)
+  Rendered chats/index.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 55ms (Views: 51.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2018-12-05 21:28:14 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (12.0ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 58ms (Views: 55.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:28:15 +0800
+Processing by ChatsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?  [["friend_id", 3]]
+  [1m[36mChat Load (0.1ms)[0m  [1mSELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered chats/_search_fridends.html.erb (0.2ms)
+  Rendered chats/_navside.html.erb (4.8ms)
+  Rendered chats/index.html.erb within layouts/application (6.3ms)
+  Rendered layouts/_login_panel.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 54ms (Views: 50.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:28:17 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+Redirected to http://localhost:3000/users/3
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2018-12-05 21:28:17 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (12.2ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 56ms (Views: 54.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:28:24 +0800
+Processing by ChatsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?  [["friend_id", 3]]
+  [1m[36mChat Load (0.1ms)[0m  [1mSELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered chats/_search_fridends.html.erb (0.1ms)
+  Rendered chats/_navside.html.erb (5.0ms)
+  Rendered chats/index.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_login_panel.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 57ms (Views: 48.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-12-05 21:28:28 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+Redirected to http://localhost:3000/users/3
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2018-12-05 21:28:28 +0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (8.9ms)
+  Rendered layouts/_login_panel.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.7ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 51ms (Views: 49.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chats" for 127.0.0.1 at 2018-12-05 21:28:29 +0800
+Processing by ChatsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ?  [["friend_id", 3]]
+  [1m[36mChat Load (0.2ms)[0m  [1mSELECT "chats".* FROM "chats" INNER JOIN "chats_users" ON "chats"."id" = "chats_users"."chat_id" WHERE "chats_users"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered chats/_search_fridends.html.erb (0.1ms)
+  Rendered chats/_navside.html.erb (6.6ms)
+  Rendered chats/index.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_login_panel.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_content.html.erb (0.1ms)
+Completed 200 OK in 63ms (Views: 59.0ms | ActiveRecord: 0.6ms)
