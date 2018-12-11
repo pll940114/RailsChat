@@ -83,7 +83,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :friendships
+  resources :friendships do
+    member do
+      post :create
+    end
+  end
 
   root 'homes#home'
 

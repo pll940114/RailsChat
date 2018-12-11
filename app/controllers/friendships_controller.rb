@@ -3,9 +3,18 @@ class FriendshipsController < ApplicationController
   before_action :logged_in
 
   def create
-    @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-    if @friendship.save
-      flash[:info] = "添加好友成功"
+    friendid = params[:friend_id]
+    if !friendid.nil?
+      @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
+    else
+      user=User.find_by_id(params[:id])
+      apply=user.friendships.find_by(friend_id: current_user[:id])
+      if !apply.nil?
+        @friendship = current_user.friendships.build(:friend_id => params[:id])
+      end
+    end
+    if !@friendship.nil? and @friendship.save
+      flash[:info] = "发送请求成功"
       redirect_to chats_path
     else
       flash[:error] = "无法添加好友"
@@ -15,13 +24,20 @@ class FriendshipsController < ApplicationController
 
   def destroy
     @friendship = current_user.friendships.find_by(friend_id: params[:id])
-    @friendship.destroy
+    if !@friendship.nil?
+      @friendship.destroy
+    end
 
     user=User.find_by_id(params[:id])
     current_user.chats.each do |chat|
       if (chat.users-[user, current_user]).blank?
         chat.destroy
       end
+    end
+
+    @friendship = user.friendships.find_by(friend_id: current_user[:id])
+    if !@friendship.nil?
+      @friendship.destroy
     end
 
     flash[:success] = "删除好友成功"
