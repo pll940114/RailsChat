@@ -1,14 +1,20 @@
-<h1>个人信息</h1>
-<br>
-<h2>昵称</h2>
-<%= @user.name %>
-<h2>邮箱</h2>
-<%= @user.email %>
-<h2>电话</h2>
-<%= @user.phonenumber %>
-<h2>性别</h2>
-<%= @user.sex %>
-<br>
-<br>
-<br>
-<%= link_to '修改信息',edit_user_path(@user)  %>
+
+
+
+<h2>个人信息</h2>
+  <ul>
+  	<br>
+    <li><h4>昵称： <%= @user.name %></h4></li>
+    <br>
+    <li><h4>邮箱： <%= @user.email %></h4></li>
+    <br>
+    <li><h4>电话： <%= @user.phonenumber %></h4></li>
+    <br>
+    <li><h4>性别： <%= @user.sex %></h4></li>
+	<br>
+	<br>
+    <h4><%= link_to '修改信息',edit_user_path(@user)  %></h4>
+  </ul>
+
+
+
