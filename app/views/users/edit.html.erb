@@ -4,5 +4,5 @@
   <%= f.input :password, label: '密码：' %>
   <%= f.input :phonenumber, label: '电话：' %>
   <%= f.input :sex, label: '性别：', collection: [['男', 'male'], ['女', 'female']], :include_blank => false %>
-  <%= f.button :submit, '更新信息' %>
+  <%= f.button :submit, '更新信息', class: "btn btn-large btn-primary"%>
 <% end %>
