@@ -1,0 +1,11 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.input :name, label: '昵称：' %>
+  <%= f.input :email, label: '邮箱：' %>
+  <%= f.input :password, label: '密码：' %>
+  <%= f.input :password_confirmation, label: '确认密码：' %>
+  <%= f.input :phonenumber, label: '电话：' %>
+  <%= f.input :sex, label: '性别：', collection: [['男', 'male'], ['女', 'female']], :include_blank => false %>
+  <%= f.button :submit, '创建账号', class: "btn btn-large btn-primary"%>
+<% end %>
+
+
