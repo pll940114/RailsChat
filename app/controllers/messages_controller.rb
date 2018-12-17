@@ -12,6 +12,8 @@ class MessagesController < ApplicationController
     else
       redirect_to chat_path(chat), flash: {:warning => '消息发送失败'} and return
     end
+    # if "robot".eql? chat.users[-1].name
+    # end
     redirect_to chat_path(chat)
   end
 

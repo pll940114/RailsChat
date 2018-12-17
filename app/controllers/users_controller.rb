@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user=User.new(user_params)
-    if @user.save
+    if @user.save and !("robot".eql? @user.name)
 #      @user.create_salary
 #      @user.create_performance
       redirect_to root_path, flash: {success: "注册成功"}
