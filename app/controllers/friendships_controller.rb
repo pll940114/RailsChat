@@ -6,11 +6,14 @@ class FriendshipsController < ApplicationController
     friendid = params[:friend_id]
     if !friendid.nil?
       @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
+      user = User.find_by_id(params[:friend_id])
+      add_robot user
     else
       user=User.find_by_id(params[:id])
       apply=user.friendships.find_by(friend_id: current_user[:id])
       if !apply.nil?
         @friendship = current_user.friendships.build(:friend_id => params[:id])
+        add_robot user
       end
     end
     if !@friendship.nil? and @friendship.save
@@ -48,6 +51,15 @@ class FriendshipsController < ApplicationController
   def logged_in
     unless logged_in?
       redirect_to root_url, flash: {danger: '请登陆'}
+    end
+  end
+
+  def add_robot(robot)
+    if "robot".eql? robot.name
+      robotfriend = robot.friendships.build(:friend_id => current_user[:id])
+      if !robotfriend.nil?
+        robotfriend.save
+      end
     end
   end
 
