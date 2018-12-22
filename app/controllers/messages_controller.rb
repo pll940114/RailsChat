@@ -12,8 +12,13 @@ class MessagesController < ApplicationController
     else
       redirect_to chat_path(chat), flash: {:warning => '消息发送失败'} and return
     end
-    # if "robot".eql? chat.users[-1].name
-    # end
+    if "robot".eql? chat.users[-1].name and
+      send_to_robot chat.users[-1], message_params['body'], chat
+      redirect_to chat_path(chat), flash: {:warning => '回复消息失败'} and return
+    elsif "robot".eql? chat.users[-2].name and
+         send_to_robot chat.users[-2], message_params['body'], chat
+      redirect_to chat_path(chat), flash: {:warning => '回复消息失败'} and return
+    end
     redirect_to chat_path(chat)
   end
 
@@ -38,6 +43,18 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body)
+  end
+
+  def send_to_robot (robot, message_body, chat)
+    reply_params = { 'body' => 'Hello world!' }
+    reply = robot.messages.build reply_params
+    reply.chat = chat
+    if reply.save
+      sync_new reply, scope: chat
+    else
+      return true
+    end
+    return false
   end
 end
 
