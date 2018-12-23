@@ -138,10 +138,18 @@ class MessagesController < ApplicationController
     return false
   end
 
-  def self.capture_stdout
+  @@capture_lock = Monitor.new
+
+  def self.capture_stdout(&block)
+    @@capture_lock.synchronize do
+      MessagesController.capture_stdout_aux block
+    end
+  end
+
+  def self.capture_stdout_aux(proc)
     origin = $stdout
     $stdout = StringIO.new
-    yield
+    proc.call
     $stdout.string
   ensure
     $stdout = origin
