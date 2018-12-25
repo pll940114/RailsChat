@@ -12,6 +12,12 @@
       <% if current_user %>
 
           <li>
+            <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#search_messages">
+              搜索
+            </button>
+          </li>
+
+          <li>
             <%= link_to chats_path, class: "dropbtn" do %>
                 ChatRoom  <i class="fa fa-wechat"></i>
             <% end %>
@@ -36,6 +42,7 @@
 </nav>
 
 <%= render 'layouts/login_panel' %>
+<%= render "layouts/search_messages" %>
 
 
 
