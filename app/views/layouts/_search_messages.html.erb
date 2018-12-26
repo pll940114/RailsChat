@@ -52,7 +52,7 @@
                 if (data != "") {
                     $('#result-messages thead').html("<tr><th>消息内容</th><th>房间号</th></tr>");
                     $.each(data, function (index, message) {
-                        $('#result-messages tbody').append("<tr><td>" + message.body + "</td><td>" + message.chat_id + "</td></tr>");
+                        $('#result-messages tbody').append("<tr><td>" + message.body + "</td><td>" + message.chat_id + "</td><td><a class='btn btn-success btn-xs' data-method='get' href='/chats/" + message.chat_id + "'>进入房间</a></td></tr>");
 
                     });
                 } else {
